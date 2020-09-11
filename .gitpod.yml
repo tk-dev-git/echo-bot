@@ -1,0 +1,3 @@
+tasks:
+  - command: "nvm install node"
+  - command: "npm i -g heroku"
