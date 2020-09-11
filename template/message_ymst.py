@@ -1,5 +1,5 @@
 def get_message_ymst():
-    _message = {
+    return {
         "type": "template",
         "altText": "this is a carousel template",
         "template": {

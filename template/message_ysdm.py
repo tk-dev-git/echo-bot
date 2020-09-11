@@ -1,5 +1,5 @@
 def get_ysdm_message():
-    _message = {
+    return {
         "type": "bubble",
         "hero": {
             "type": "image",
