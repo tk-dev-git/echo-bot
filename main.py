@@ -5,6 +5,7 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage, FlexSendM
 import os
 import template.message_ysdm as ysdm
 import template.message_ymst as ymst
+import template.message_bubble as bubble
 
 app=Flask(__name__)
 
@@ -29,10 +30,15 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    contents = []
     flex_ysdm = FlexSendMessage.new_from_json_dict(ysdm.get_ysdm_message())
-    flex_ymst = FlexSendMessage.new_from_json_dict(ymst.get_message_ymst())
+    flex_ymst = FlexSendMessage.new_from_json_dict(ymst.get_ymst_message())
+    flex_bubble = FlexSendMessage.new_from_json_dict(bubble.get_message_bubble())
+    contents.append(flex_ysdm)
+    # contents.append(flex_ymst)
+    contents.append(flex_bubble)
     # line_bot_api.reply_message(event.reply_token, TextSendMessage(text=event.message.text))
-    line_bot_api.reply_message(event.reply_token, messages=[flex_ysdm, flex_ymst])
+    line_bot_api.reply_message(event.reply_token, messages=contents)
 
 if __name__=="__main__":
     port = int(os.getenv("PORT",5000))

@@ -1,4 +1,4 @@
-def get_message_ymst():
+def get_ymst_message():
     return {
         "type": "template",
         "altText": "this is a carousel template",
